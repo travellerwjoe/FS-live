@@ -1,7 +1,7 @@
 {
   "name": "fs-live",
   "version": "1.0.0",
-  "description": "A football score live prpoject based on Vue.js and Koa",
+  "description": "A football score live project based on Vue.js",
   "author": "TraJoe_Wu <traveller_wjoe@sina.com>",
   "private": true,
   "scripts": {
