@@ -1,22 +1,33 @@
 <template>
     <div class="match-list">
-        <match-league></match-league>
-        <match-league></match-league>
+        <match-league v-for="item in live" :key="item.id"></match-league>
     </div>
 </template>
 <style lang="stylus">
-    .match-list
-        background-color:#2F8162
+    .match-list 
+        background-color:#2F8162 
         min-height:100%
 </style>
 <script>
     import MatchLeague from './MatchLeague'
-    export default{
+    import { mapActions, mapGetters } from 'vuex'
+    export default {
         components: {
             MatchLeague
         },
-        mounted () {
-            
+        methods: {
+            ...mapActions([
+                'fetchLive'
+            ])
+        },
+        computed: {
+            ...mapGetters([
+                'live'
+            ])
+        },
+        mounted() {
+            this.fetchLive()
         }
     }
+
 </script>
