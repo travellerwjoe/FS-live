@@ -1,9 +1,7 @@
 <template>
     <div class="match-list">
-        <match-title></match-title>
-        <match-item></match-item>
-        <match-item></match-item>
-        <match-item></match-item>
+        <match-league-title :league="league.league"></match-league-title>
+        <match-item v-for="(item,index) in league.matches" :key="item.id" :match="item"></match-item>
     </div>
 </template>
 <style lang="stylus">
@@ -13,14 +11,15 @@
 </style>
 <script>
     import MatchItem from './MatchItem'
-    import MatchTitle from './MatchTitle'
+    import MatchLeagueTitle from './MatchLeagueTitle'
     export default{
         components: {
             MatchItem,
-            MatchTitle
+            MatchLeagueTitle
         },
         mounted () {
             
-        }
+        },
+        props: ['league']
     }
 </script>

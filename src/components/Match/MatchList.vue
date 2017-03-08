@@ -1,6 +1,6 @@
 <template>
     <div class="match-list">
-        <match-league v-for="item in live" :key="item.id"></match-league>
+        <match-league v-for="(item,key) in live" :key="key" :league="item"></match-league>
     </div>
 </template>
 <style lang="stylus">

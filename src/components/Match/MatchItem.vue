@@ -1,29 +1,29 @@
 <template>
     <div class="match-item">
-        <div class="match-time match-col">88'</div>
+        <div class="match-time match-col">{{parseInt(match.status)?match.status+"'":match.status}}</div>
         <div class="match-score match-col">
-            <div class="match-host-score">1</div>
+            <div class="match-host-score">{{match.rd.hg}}</div>
             <div class="match-soccer-icon icon-small"></div>
-            <div class="match-guest-score">2</div>
+            <div class="match-guest-score">{{match.rd.gg}}</div>
         </div>
         <div class="match-corner match-col">
-            <div class="match-host-corner">6</div>
+            <div class="match-host-corner">{{match.rd.hc}}</div>
             <div class="match-corner-icon icon-small"></div>
-            <div class="match-guest-corner">6</div>
+            <div class="match-guest-corner">{{match.rd.gc}}</div>
         </div>
         <div class="match-main match-col">
             <div class="match-host">
-                <span class="match-team">罗马</span>
-                <span class="match-yellow-card">3</span>
-                <span class="match-red-card">1</span>
-                <span class="match-odds color-main">即: -0.25/3.5/13.5</span>
+                <span class="match-team">{{match.host.n}}</span>
+                <span class="match-yellow-card" v-if="parseInt(match.rd.hy)">{{match.rd.hy}}</span>
+                <span class="match-red-card" v-if="parseInt(match.rd.hr)">{{match.rd.hr}}</span>
+                <span class="match-odds color-main">即: {{match.f_ld.hrf||'-'}}/{{match.f_ld.hdx||'-'}}/{{match.f_ld.hcb||'-'}}</span>
             </div>
-            <match-time-bar></match-time-bar>
+            <match-time-bar :time="match.status"></match-time-bar>
             <div class="match-guest">
-                <span class="match-team">那不勒斯</span>
-                <span class="match-yellow-card">3</span>
-                <span class="match-red-card">1</span>
-                <span class="match-odds">初: -0.25/3.0/10.5</span>
+                <span class="match-team">{{match.guest.n}}</span>
+                <span class="match-yellow-card" v-if="parseInt(match.rd.gy)">{{match.rd.gy}}</span>
+                <span class="match-red-card" v-if="parseInt(match.rd.gr)">{{match.rd.gr}}</span>
+                <span class="match-odds">初: {{match.sd.f.hrf||'-'}}/{{match.sd.f.hdx||'-'}}/{{match.sd.f.hcb||'-'}}</span>
             </div>
         </div>
         <div class="match-action match-col">
@@ -102,6 +102,7 @@
     export default {
         components: {
             MatchTimeBar
-        }
+        },
+        props: ['match']
     }
 </script>

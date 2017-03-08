@@ -1,7 +1,7 @@
 <template>
     <div class="match-title">
         <span class="match-Italy-icon icon"></span>
-        <span class="match-type">意大利甲级联赛</span>
+        <span class="match-type">{{league.fn}}</span>
     </div>
 </template>
 <style lang="stylus">
@@ -17,6 +17,6 @@
 </style>
 <script>
     export default {
-
+        props: ['league']
     }
 </script>

@@ -3,7 +3,7 @@ import axios from 'axios'
 
 export default {
     fetchLive() {
-        return axios.get('/live')
+        return axios.get('/api/live')
             .then(res => {
                 return res
             })

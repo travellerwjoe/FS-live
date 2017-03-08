@@ -1,7 +1,7 @@
 <template>
     <div class="match-time-bar">
         <div class="match-time-bar-bg1"></div>
-        <div class="match-time-bar-bg2"></div>
+        <div class="match-time-bar-bg2" :style="{width:time=='全'?'100%':(time/90*100)>=100?'100%':(time/90*100)+'%'}"></div>
         <span class="match-time-line match-time-line-5min"></span>
         <span class="match-time-line match-time-line-10min"></span>
         <span class="match-time-line match-time-line-5min"></span>
@@ -77,6 +77,8 @@
 </style>
 <script>
     export default {
-
+        props: ['time'],
+        mounted () {
+        }
     }
 </script>

@@ -5,10 +5,11 @@ export default {
     fetchLive({ commit }) {
         api.fetchLive()
             .then(res => {
-                commit(types.FETCH_LIVE, res.data)
+                const data = res.data
+                data.status === 200 && data.result === 'success' && commit(types.FETCH_LIVE, data.rs)
             })
             .catch(err => {
-                
+
             })
     }
 }

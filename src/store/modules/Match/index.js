@@ -7,8 +7,8 @@ const state = {
 }
 
 const mutations = {
-    [types.FETCH_LIVE](state, { rs }) {
-        state.live = rs
+    [types.FETCH_LIVE](state, live) {
+        state.live = live
     }
 }
 
