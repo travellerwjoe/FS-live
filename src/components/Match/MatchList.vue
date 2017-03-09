@@ -27,6 +27,9 @@
         },
         mounted() {
             this.fetchLive()
+            this.socket.on('live', res => {
+                console.log(res)
+            })
         }
     }
 
