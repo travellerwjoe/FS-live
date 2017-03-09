@@ -1,5 +1,5 @@
 <template>
-    <div class="match-list">
+    <div class="match-league">
         <match-league-title :league="league.league"></match-league-title>
         <match-item v-for="(item,index) in league.matches" :key="item.id" :match="item"></match-item>
     </div>
@@ -18,7 +18,7 @@
             MatchLeagueTitle
         },
         mounted () {
-            
+
         },
         props: ['league']
     }

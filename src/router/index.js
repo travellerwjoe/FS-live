@@ -13,8 +13,8 @@ export default new Router({
       component: Hello
     },
     {
-      path: '/MatchList',
-      name: 'MatchList',
+      path: '/Live',
+      name: 'Live',
       component: MatchList
     }
   ]

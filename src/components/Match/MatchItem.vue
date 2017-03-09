@@ -2,27 +2,27 @@
     <div class="match-item">
         <div class="match-time match-col">{{parseInt(match.status)?match.status+"'":match.status}}</div>
         <div class="match-score match-col">
-            <div class="match-host-score">{{match.rd.hg}}</div>
+            <div class="match-host-score">{{match.rd?match.rd.hg:0}}</div>
             <div class="match-soccer-icon icon-small"></div>
-            <div class="match-guest-score">{{match.rd.gg}}</div>
+            <div class="match-guest-score">{{match.rd?match.rd.gg:0}}</div>
         </div>
         <div class="match-corner match-col">
-            <div class="match-host-corner">{{match.rd.hc}}</div>
+            <div class="match-host-corner">{{match.rd?match.rd.hc:0}}</div>
             <div class="match-corner-icon icon-small"></div>
-            <div class="match-guest-corner">{{match.rd.gc}}</div>
+            <div class="match-guest-corner">{{match.rd?match.rd.gc:0}}</div>
         </div>
         <div class="match-main match-col">
             <div class="match-host">
                 <span class="match-team">{{match.host.n}}</span>
-                <span class="match-yellow-card" v-if="parseInt(match.rd.hy)">{{match.rd.hy}}</span>
-                <span class="match-red-card" v-if="parseInt(match.rd.hr)">{{match.rd.hr}}</span>
+                <span class="match-yellow-card" v-if="match.rd && parseInt(match.rd.hy)">{{match.rd.hy}}</span>
+                <span class="match-red-card" v-if="match.rd && parseInt(match.rd.hr)">{{match.rd.hr}}</span>
                 <span class="match-odds color-main">即: {{match.f_ld.hrf||'-'}}/{{match.f_ld.hdx||'-'}}/{{match.f_ld.hcb||'-'}}</span>
             </div>
-            <match-time-bar :time="match.status"></match-time-bar>
+            <match-time-bar :time="match.status" :events="match.events_graph?match.events_graph.events:[]"></match-time-bar>
             <div class="match-guest">
                 <span class="match-team">{{match.guest.n}}</span>
-                <span class="match-yellow-card" v-if="parseInt(match.rd.gy)">{{match.rd.gy}}</span>
-                <span class="match-red-card" v-if="parseInt(match.rd.gr)">{{match.rd.gr}}</span>
+                <span class="match-yellow-card" v-if="match.rd && parseInt(match.rd.gy)">{{match.rd.gy}}</span>
+                <span class="match-red-card" v-if="match.rd && parseInt(match.rd.gr)">{{match.rd.gr}}</span>
                 <span class="match-odds">初: {{match.sd.f.hrf||'-'}}/{{match.sd.f.hdx||'-'}}/{{match.sd.f.hcb||'-'}}</span>
             </div>
         </div>
@@ -70,6 +70,7 @@
                 height:1rem
                 color:#fff
                 text-align:center
+                vertical-align:super
             .match-yellow-card
                 background: #EDBB24;
                 background: -moz-linear-gradient(top,#F4DA1A,#EDBB24 100%);
@@ -81,6 +82,12 @@
             .match-odds
                 float:right
                 font-size:.6rem
+            .match-team
+                display: inline-block
+                max-width: 120px
+                overflow: hidden
+                white-space: nowrap
+                text-overflow: ellipsis
 
         .match-action
             flex:2
@@ -102,6 +109,9 @@
     export default {
         components: {
             MatchTimeBar
+        },  
+        mounted () {
+
         },
         props: ['match']
     }
