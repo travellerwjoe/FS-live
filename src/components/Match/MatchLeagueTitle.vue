@@ -1,11 +1,11 @@
 <template>
-    <div class="match-title">
+    <div class="match-league-title">
         <span class="match-Italy-icon icon"></span>
         <span class="match-type">{{league.fn}}</span>
     </div>
 </template>
 <style lang="stylus">
-    .match-title
+    .match-league-title
         background:#fafafa
         text-align:left
         padding:.25rem .5rem

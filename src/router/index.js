@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Hello from '@/components/Hello'
-import MatchList from '@/components/Match'
+import Live from '@/components/Live'
 
 Vue.use(Router)
 
@@ -15,7 +15,7 @@ export default new Router({
     {
       path: '/Live',
       name: 'Live',
-      component: MatchList
+      component: Live
     }
   ]
 })

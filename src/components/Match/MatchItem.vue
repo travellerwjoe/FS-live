@@ -1,5 +1,5 @@
 <template>
-    <div class="match-item">
+    <div class="match">
         <div :class="['match-time','match-col',{'color-main':match.status==='未','color-grey':match.status==='全'}]">{{parseInt(match.status)?match.status+"'":match.status}}</div>
         <div class="match-score match-col">
             <div class="match-host-score">{{match.rd?match.rd.hg:0}}</div>
@@ -43,7 +43,7 @@
         &:last-of-type
             border-left:0
             border-right:0
-    .match-item
+    .match
         background:#fff
         height:4rem
         border-bottom:1px solid #eee
