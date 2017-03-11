@@ -9,7 +9,7 @@
         min-height:100%
 </style>
 <script>
-    import MatchLeague from './MatchLeague'
+    import MatchLeague from '../MatchLeague'
     export default {
         components: {
             MatchLeague

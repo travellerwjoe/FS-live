@@ -105,7 +105,7 @@
             background-image:url('/static/images/icon-fav-hollow.png')
 </style>
 <script>
-    import MatchTimeBar from './MatchTimeBar'
+    import MatchTimeBar from '../MatchTimeBar'
     export default {
         components: {
             MatchTimeBar

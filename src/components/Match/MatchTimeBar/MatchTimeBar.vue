@@ -22,7 +22,6 @@
         <span class="match-HT-icon icon-small"></span>
         <template v-for="(item,index) in events">
             <span :class="['match-event','icon-small',getEventClasses(item.t)]" :title="item.content" :style="{left:(item.status/90*100)>=100?'100%':Math.floor((item.status/90*100))+'%'}"></span>
-            <!--<span class="match-event match-goal match-host-goal icon-small" :title="item.content" :style="{left:(item.status/90*100)>=100?'100%':(item.status/90*100)+'%'}"></span>-->
         </template>
     </div>
 </template>
