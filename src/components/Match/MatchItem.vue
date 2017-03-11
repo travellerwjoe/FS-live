@@ -1,6 +1,6 @@
 <template>
     <div class="match-item">
-        <div class="match-time match-col">{{parseInt(match.status)?match.status+"'":match.status}}</div>
+        <div :class="['match-time','match-col',{'color-main':match.status==='未','color-grey':match.status==='全'}]">{{parseInt(match.status)?match.status+"'":match.status}}</div>
         <div class="match-score match-col">
             <div class="match-host-score">{{match.rd?match.rd.hg:0}}</div>
             <div class="match-soccer-icon icon-small"></div>

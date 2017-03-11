@@ -21,7 +21,7 @@
         <span class="match-time-line match-time-line-5min"></span>
         <span class="match-HT-icon icon-small"></span>
         <template v-for="(item,index) in events">
-            <span :class="['match-event','icon-small',getEventClasses(item.t)]" :title="item.content" :style="{left:(item.status/90*100)>=100?'100%':(item.status/90*100)+'%'}"></span>
+            <span :class="['match-event','icon-small',getEventClasses(item.t)]" :title="item.content" :style="{left:(item.status/90*100)>=100?'100%':Math.floor((item.status/90*100))+'%'}"></span>
             <!--<span class="match-event match-goal match-host-goal icon-small" :title="item.content" :style="{left:(item.status/90*100)>=100?'100%':(item.status/90*100)+'%'}"></span>-->
         </template>
     </div>
@@ -53,6 +53,7 @@
             background: #288267;
             background: -moz-linear-gradient(top,#288267,#105541 100%);
             background: -webkit-gradient(linear,0 0,0 100%,from(#288267),to(#105541));
+            transition:all .5s
             // border-right: 1px solid #2d7d68;
         .match-time-line
             position: absolute;
@@ -82,6 +83,7 @@
             position:absolute
             bottom:-.15rem
             margin-left:-.5rem
+            z-index:100
         .match-host-goal
             background-image:url('/static/images/icon-hg.png')
         .match-host-goal-cancel
@@ -106,6 +108,8 @@
         .match-guest-corner
             background-image:url('/static/images/icon-gc.png')
             bottom:.35rem
+        .match-goal
+            background-image:url('/static/images/icon-g.png')
         
 </style>
 <script>
@@ -125,10 +129,11 @@
                     'match-guest-goal': type === 'gg',
                     'match-guest-goal-cancel': type === 'ggc',
                     'match-guest-miss-penalty': type === 'gmp',
-                    'match-guest-penalty': type === 'mgp',
+                    'match-guest-penalty': type === 'gp',
                     'match-event-rc': type === 'hrc' || type === 'grc',
                     'match-host-corner': type === 'hc',
-                    'match-guest-corner': type === 'gc'
+                    'match-guest-corner': type === 'gc',
+                    'match-goal': type === 'g'
                 }
             }
         },
