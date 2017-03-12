@@ -1,6 +1,8 @@
 <template>
     <div class="match-league-title">
-        <span class="match-Italy-icon icon"></span>
+        <span class="match-icon icon">
+            <img class="icon" :src="`/static/images/country/${league.ci}.png`">
+        </span>
         <span class="match-type">{{league.fn}}</span>
     </div>
 </template>
@@ -10,8 +12,7 @@
         text-align:left
         padding:.25rem .5rem
         font-size:.8rem
-        .match-Italy-icon
-            background-image:url('/static/images/icon-Italy.png')
+        
         .match-type
             margin-left:.2rem
 </style>

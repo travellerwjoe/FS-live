@@ -33,7 +33,7 @@
   .icon {
     width: 1.5rem;
     height: 1.5rem;
-    vertical-align: text-bottom;
+    vertical-align: sub;
   }
   
   .icon-small {
