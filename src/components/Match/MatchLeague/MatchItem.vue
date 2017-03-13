@@ -19,7 +19,8 @@
                 <span class="match-odds color-main" v-if="match.status!=='未' && match.f_ld">即: {{match.f_ld.hrf||'-'}}/{{match.f_ld.hdx||'-'}}/{{match.f_ld.hcb||'-'}}</span>
                 <span class="match-start-time color-main" v-if="match.status==='未'">{{match.rtime}}</span>
             </div>
-            <match-time-bar :time="match.status" :events="match.events_graph?match.events_graph.events:[]" v-if="match.status!=='未'"></match-time-bar>
+            <!--<match-time-bar :time="match.status" :events="match.events_graph?match.events_graph.events:[]" v-if="match.status!=='未'"></match-time-bar>-->
+            <match-time-bar :event="match.events_graph?match.events_graph:{}" v-if="match.status!=='未'"></match-time-bar>
             <div class="match-guest">
                 <span class="match-team">{{match.guest.n}}</span>
                 <span class="match-yellow-card" v-if="match.rd && parseInt(match.rd.gy)">{{match.rd.gy}}</span>

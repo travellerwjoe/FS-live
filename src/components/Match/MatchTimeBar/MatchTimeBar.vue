@@ -1,27 +1,15 @@
 <template>
     <div class="match-time-bar">
         <div class="match-time-bar-bg1"></div>
-        <div class="match-time-bar-bg2" :style="{width:time=='全'?'100%':time=='半'?'50%':(time/90*100)>=100?'100%':(time/90*100)+'%'}"></div>
-        <span class="match-time-line match-time-line-5min"></span>
-        <span class="match-time-line match-time-line-10min"></span>
-        <span class="match-time-line match-time-line-5min"></span>
-        <span class="match-time-line match-time-line-10min"></span>
-        <span class="match-time-line match-time-line-5min"></span>
-        <span class="match-time-line match-time-line-10min"></span>
-        <span class="match-time-line match-time-line-5min"></span>
-        <span class="match-time-line match-time-line-10min"></span>
-        <span class="match-time-line match-time-line-5min"></span>
-        <span class="match-time-line match-time-line-10min"></span>
-        <span class="match-time-line match-time-line-5min"></span>
-        <span class="match-time-line match-time-line-10min"></span>
-        <span class="match-time-line match-time-line-5min"></span>
-        <span class="match-time-line match-time-line-10min"></span>
-        <span class="match-time-line match-time-line-5min"></span>
-        <span class="match-time-line match-time-line-10min"></span>
-        <span class="match-time-line match-time-line-5min"></span>
+        <div class="match-time-bar-bg2" :style="{width:(event.status/event.ml*100)>=100?'100%':(event.status/event.ml*100)+'%'}"></div>
+        <!--<div class="match-time-bar-bg2" :style="{width:time=='全'?'100%':time=='半'?'50%':(time/90*100)>=100?'100%':(time/90*100)+'%'}"></div>-->
+        <template v-for="n in event.ml/5/2">
+            <span class="match-time-line match-time-line-10min"></span>
+            <span class="match-time-line match-time-line-5min"></span>
+        </template>
         <span class="match-HT-icon icon-small"></span>
-        <template v-for="(item,index) in events">
-            <span :class="['match-event','icon-small',getEventClasses(item.t)]" :title="item.content" :style="{left:(item.status/90*100)>=100?'100%':Math.floor((item.status/90*100))+'%'}"></span>
+        <template v-for="(item,index) in event.events">
+            <span :class="['match-event','icon-small',getEventClasses(item.t)]" :title="item.content" :style="{left:(item.status/event.ml*100)>=100?'100%':Math.floor((item.status/event.mlc*100))+'%'}"></span>
         </template>
     </div>
 </template>
@@ -32,6 +20,9 @@
         width: 100%;
         border: 1px solid #2d353c;
         top:-.15rem
+        display:flex
+        align-items:flex-end
+
         .match-time-bar-bg1
             position: absolute;
             top: 0;
@@ -39,6 +30,7 @@
             z-index: 1;
             width: 100%;
             height: 100%;
+            background:transparent
             // background: #666;
             // background: -moz-linear-gradient(top,#666,#444 100%);
             // background: -webkit-gradient(linear,0 0,0 100%,from(#666),to(#444));
@@ -55,20 +47,19 @@
             transition:all .5s
             // border-right: 1px solid #2d7d68;
         .match-time-line
-            position: absolute;
-            bottom: 0;
+            // position: absolute;
+            // bottom: 0;
             width: 0;
             z-index: 3;
             border-left: 1px solid #2d353c;
             opacity: .7;
-            width:5%
+            flex:1
+            &:first-of-type
+                border-left:0
         .match-time-line-5min
             height:.2rem
         .match-time-line-10min
             height:.35rem
-        for num in (1..18)
-            .match-time-line:nth-of-type({num})
-                left:num * (100/18) %
         .match-HT-icon
             background-image:url('/static/images/icon-HT.png')
             position:absolute
@@ -136,7 +127,8 @@
                 }
             }
         },
-        props: ['time', 'events'],
+        // props: ['time', 'events'],
+        props: ['event'],
         mounted () {
         }
     }
