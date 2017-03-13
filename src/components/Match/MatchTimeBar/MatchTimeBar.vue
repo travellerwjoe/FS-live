@@ -9,7 +9,7 @@
         </template>
         <span class="match-HT-icon icon-small"></span>
         <template v-for="(item,index) in event.events">
-            <span :class="['match-event','icon-small',getEventClasses(item.t)]" :title="item.content" :style="{left:(item.status/event.ml*100)>=100?'100%':Math.floor((item.status/event.mlc*100))+'%'}"></span>
+            <span :class="['match-event','icon-small',getEventClasses(item.t)]" :title="item.content" :style="{left:(item.status/event.ml*100)>=100?'100%':Math.floor((item.status/event.ml*100))+'%'}"></span>
         </template>
     </div>
 </template>
