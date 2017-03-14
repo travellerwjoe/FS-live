@@ -10,6 +10,7 @@
 <script>
     import MatchList from './Match'
     import { mapActions, mapGetters } from 'vuex'
+    import utils from '@/utils'
     export default {
         props: ['league'],
         components: {
@@ -17,16 +18,26 @@
         },
         methods: {
             ...mapActions([
-                'fetchLive'
-            ])
+                'fetchLive',
+                'socketDisconnect',
+                'socketConnect'
+            ]),
+            listenVisibility() {
+                utils.visibility(() => {
+                    this.socketConnect()
+                }, () => {
+                    this.socketDisconnect()
+                })  
+            }
         },
         computed: {
             ...mapGetters([
-                'live'
+                'live'  
             ])
         },
         mounted() {
-            this.fetchLive()
+             this.fetchLive()
+             this.listenVisibility()
         }
     }
 </script>
