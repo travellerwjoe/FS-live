@@ -47,7 +47,7 @@
             border-right:0
     .match
         background:#fff
-        height:4rem
+        height:4.5rem
         border-bottom:1px solid #eee
         font-size:.8rem
         display:flex
@@ -59,6 +59,15 @@
             flex:1.2
             background:#fafafa
             font-weight:bold
+            display:flex
+            flex-direction:column
+            
+            div
+                flex:1
+                line-height:1.85rem
+            .icon-small
+                max-height:1rem
+                margin:auto
         .match-corner
             font-weight:normal
         .match-main
