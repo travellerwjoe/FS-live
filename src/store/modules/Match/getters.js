@@ -7,33 +7,36 @@ export default {
         const liveArr = []
         //  相同联赛的组合在一起
         state.live.forEach((item, index) => {
-                const leagueID = item.league && item.league.i
-                if (!leagueID) {
-                    return
+            const leagueID = item.league && item.league.i
+            if (!leagueID) {
+                return
+            }
+            if (!liveObj[leagueID]) {
+                liveObj[leagueID] = {
+                    league: {},
+                    matches: []
                 }
-                if (!liveObj[leagueID]) { 
-                    liveObj[leagueID] = {
-                        league: {},
-                        matches: []
-                    }
-                }
-                liveObj[leagueID].league = item.league
-                liveObj[leagueID].matches.push(item)
-            })
+            }
+            liveObj[leagueID].league = item.league
+            liveObj[leagueID].matches.push(item)
+        })
 
         for (let key in liveObj) {
             liveArr.push(liveObj[key])
         }
 
-        //  转换成数组后按比赛已进行时间降序排序
+        //  转换成数组后按比赛已进行时间和联赛首字母降序排序
         liveArr.sort((cur, next) => {
-            var curMaxStatus = Math.max.apply(null, cur.matches.map(item => {
-                    return item.events_graph.status
-                }))
-            var nextMaxStatus = Math.max.apply(null, next.matches.map(item => {
-                    return item.events_graph.status
-                }))
-            return nextMaxStatus - curMaxStatus
+            const curMaxStatus = Math.max.apply(null, cur.matches.map(item => {
+                return item.events_graph.status
+            }))
+            const nextMaxStatus = Math.max.apply(null, next.matches.map(item => {
+                return item.events_graph.status
+            }))
+            // 如果时间相同则按联赛首字母降序排序
+            const curLeagueChar = cur.league.ls.charCodeAt()
+            const nextLeagueChar = next.league.ls.charCodeAt()
+            return (nextMaxStatus - curMaxStatus) || (nextLeagueChar - curLeagueChar)
         })
 
         return liveArr
