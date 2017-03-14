@@ -12,6 +12,7 @@ export default {
     socketConnect({ commit }) {
         console.log('socketConnect')
         socket.open()
+        socket.emit('fetchLive')
     },
     socketDisconnect({ commit }) {
         console.log('socketDisconnect')
