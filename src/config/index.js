@@ -1,3 +1,4 @@
 export default {
-    'server': 'http://localhost:5555'
+    server: 'http://localhost',
+    port: 5555
 }
