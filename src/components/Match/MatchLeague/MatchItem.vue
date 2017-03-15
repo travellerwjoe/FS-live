@@ -13,7 +13,7 @@
         </div>
         <div class="match-main match-col">
             <div class="match-host">
-                <span class="match-team">{{match.host.n}}</span>
+                <span :class="['match-team',{'match-goaling':match.goaling && match.goaling.host}]">{{match.host.n}}</span>
                 <span class="match-yellow-card" v-if="match.rd && parseInt(match.rd.hy)">{{match.rd.hy}}</span>
                 <span class="match-red-card" v-if="match.rd && parseInt(match.rd.hr)">{{match.rd.hr}}</span>
                 <span class="match-odds color-main" v-if="match.status!=='未' && match.f_ld">即: {{match.f_ld.hrf||'-'}}/{{match.f_ld.hdx||'-'}}/{{match.f_ld.hcb||'-'}}</span>
@@ -22,7 +22,7 @@
             <!--<match-time-bar :time="match.status" :events="match.events_graph?match.events_graph.events:[]" v-if="match.status!=='未'"></match-time-bar>-->
             <match-time-bar :event="match.events_graph?match.events_graph:{}" v-if="match.status!=='未'"></match-time-bar>
             <div class="match-guest">
-                <span class="match-team">{{match.guest.n}}</span>
+                <span :class="['match-team',{'match-goaling':match.goaling && match.goaling.guest}]">{{match.guest.n}}</span>
                 <span class="match-yellow-card" v-if="match.rd && parseInt(match.rd.gy)">{{match.rd.gy}}</span>
                 <span class="match-red-card" v-if="match.rd && parseInt(match.rd.gr)">{{match.rd.gr}}</span>
                 <span class="match-odds" v-if="match.sd">初: {{match.sd.f.hrf||'-'}}/{{match.sd.f.hdx||'-'}}/{{match.sd.f.hcb||'-'}}</span>
@@ -120,6 +120,10 @@
             background-image:url('/static/images/icon-fav.png')
         .match-fav-hollow-icon 
             background-image:url('/static/images/icon-fav-hollow.png')
+
+        .match-goaling
+            background-color:yellow
+            color:red
 </style>
 <script>
     import MatchTimeBar from '../MatchTimeBar'
@@ -129,6 +133,9 @@
         },  
         mounted () {
 
+        },
+        updated () {
+        
         },
         props: ['match']
     }

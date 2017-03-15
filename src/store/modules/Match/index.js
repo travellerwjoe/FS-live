@@ -3,7 +3,7 @@ import getters from './getters'
 import * as types from '@/store/mutation-types'
 
 const state = {
-    live: {}
+    live: []
 }
 
 const mutations = {
