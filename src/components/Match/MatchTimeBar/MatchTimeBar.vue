@@ -136,7 +136,7 @@
                     'match-host-corner': type === 'hc',
                     'match-guest-corner': type === 'gc',
                     'match-goal': type === 'g',
-                    // 'match-goal-cancel': type === 'gc',
+                    'match-goal-cancel': type === 'ggc',
                     'match-miss-penalty': type === 'mp',
                     'match-penalty': type === 'p'
                 }

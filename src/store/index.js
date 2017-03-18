@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import * as actions from './actions'
 import * as getters from './getters'
-import match from './modules/Match'
+import match from './modules/Live'
 
 Vue.use(Vuex)
 
