@@ -1,15 +1,19 @@
 import actions from './actions'
 import getters from './getters'
-import * as types from '@/store/mutation-types'
+import { FETCH_LIVE, ADD_TO_GOALING_QUEUE } from '@/store/mutation-types'
 
 const state = {
     live: [],
-    goaling: []
+    goalingQueue: []
 }
 
 const mutations = {
-    [types.FETCH_LIVE](state, live) {
+    [FETCH_LIVE](state, live) {
         state.live = live
+    },
+    // 添加到进球信息到进球队列
+    [ADD_TO_GOALING_QUEUE](state, item) {
+        state.goalingQueue.push(item)
     }
 }
 
