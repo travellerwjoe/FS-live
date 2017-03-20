@@ -25,7 +25,7 @@ export default {
             liveArr.push(liveObj[key])
         }
 
-        //  转换成数组后按比赛已进行时间和联赛首字母降序排序
+        //  转换成数组后按联赛中比赛最大已进行时间和联赛首字母降序排序
         liveArr.sort((cur, next) => {
             const curMaxStatus = Math.max.apply(null, cur.matches.map(item => {
                 return item.events_graph.status
@@ -33,6 +33,18 @@ export default {
             const nextMaxStatus = Math.max.apply(null, next.matches.map(item => {
                 return item.events_graph.status
             }))
+
+            // 未开始的比赛按开始时间升序排序
+            if (curMaxStatus === 0 && nextMaxStatus === 0) {
+                const curMaxStartTime = Math.max.apply(null, cur.matches.map(item => {
+                    return new Date(item.rtime).getTime()
+                }))
+                const nextMaxStartTime = Math.max.apply(null, next.matches.map(item => {
+                    return new Date(item.rtime).getTime()
+                }))
+                return curMaxStartTime - nextMaxStartTime
+            }
+
             // 如果时间相同则按联赛首字母降序排序
             const curLeagueChar = cur.league.ls.charCodeAt()
             const nextLeagueChar = next.league.ls.charCodeAt()
