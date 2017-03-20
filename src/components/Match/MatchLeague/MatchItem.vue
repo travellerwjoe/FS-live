@@ -1,12 +1,12 @@
 <template>
     <div class="match">
         <div :class="['match-time','match-col',{'color-main':match.status==='未','color-grey':match.status==='全'}]">{{parseInt(match.status)?match.status+"'":match.status}}</div>
-        <div class="match-score match-col" v-if="match.rd">
+        <div class="match-score match-col" v-if="match.status!=='未'">
             <div class="match-host-score">{{match.rd?match.rd.hg:0}}</div>
             <div class="match-soccer-icon icon-small"></div>
             <div class="match-guest-score">{{match.rd?match.rd.gg:0}}</div>
         </div>
-        <div class="match-corner match-col" v-if="match.rd">
+        <div class="match-corner match-col" v-if="match.status!=='未'">
             <div class="match-host-corner">{{match.rd?match.rd.hc:0}}</div>
             <div class="match-corner-icon icon-small"></div>
             <div class="match-guest-corner">{{match.rd?match.rd.gc:0}}</div>
@@ -132,7 +132,7 @@
             MatchTimeBar
         },  
         mounted () {
-
+            
         },
         updated () {
         

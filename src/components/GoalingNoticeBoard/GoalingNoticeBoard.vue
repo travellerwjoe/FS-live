@@ -1,9 +1,12 @@
 <template>
-    <div class="goaling-notice-board">
-        <!--<div class="goaling-league">{{goaling.league.fn}}</div>
-        <div class="goaling-host">{{goaling.host.name}}</div>
-        <div class="goaling-guest">{{goaling.guest.name}}</div>-->
-    </div>
+    <transition name="fade" mode="out-in" appear>
+        <div class="goaling-notice-board" v-if="goaling">
+            <div class="goaling-league">{{goaling.league.fn}}</div>
+            <div class="goaling-host">{{goaling.host.name}}</div>
+            <div class="goaling-guest">{{goaling.guest.name}}</div>
+        </div>
+
+    </transition>
 </template>
 <style lang="stylus">
     .goaling-notice-board
@@ -20,6 +23,27 @@
 </style>
 <script>
     export default {
-        props: ['goaling']
+        props: ['goaling'],
+        data() {
+            return {
+                currentView: 'GoalingNoticeBoard'
+            }
+        },
+        methods: {
+            switchView() {
+                setTimeout(() => {
+                    // this.currentView = this.currentView ? null : 'GoalingNoticeBoard'
+                    // setTimeout(() => {
+                    //     this.currentView = 'GoalingNoticeBoard'
+                    //     this.switchView()
+                    // }, 1000)
+                    this.goaling = null
+                }, 3000)
+            }
+        },
+        mounted() {
+            this.switchView()
+            console.log(this.$store)
+        }
     }
 </script>
