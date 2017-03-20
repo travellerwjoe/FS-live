@@ -1,34 +1,40 @@
 <template>
     <div class="live">
         <Match-List :list="live"></Match-List>
-        <!--<Goaling-Notice-Board :goaling="goaling" ></Goaling-Notice-Board>-->
-        <!--<keep-alive>
-            <component :is="currentView"></component>
-        </keep-alive>-->
+        <Goaling-Notice-Board></Goaling-Notice-Board>
+        
+        <!-- <component :is="currentView"></component>-->
+            
+        <Test :count="5"></Test>
     </div>
 </template>
 <style lang="stylus">
     .live 
         height:100%
+    .fade-enter-active, .fade-leave-active 
+        transition: opacity .5s
+    .fade-enter, .fade-leave-active
+        opacity: 0
 </style>
 <script>
     import MatchList from './Match'
     import GoalingNoticeBoard from './GoalingNoticeBoard'
+    import Test from './Test'
     import { mapActions, mapGetters } from 'vuex'
     import utils from '@/utils'
     export default {
         data() {
             return {
                 goalFlag: ['g', 'hg', 'gg', 'p', 'hp', 'gp', 'hw', 'gw'], // 进球标识
-                currentView: 'GoalingNoticeBoard'
+                currentView: 'GoalingNoticeBoard',
+                goalingList: [],
+                goalingItem: null
             }
-        },
-        render: function (createElement, context) {
-          return createElement(GoalingNoticeBoard)  
         },
         components: {
             MatchList,
-            GoalingNoticeBoard
+            GoalingNoticeBoard,
+            Test
         },
         methods: {
             ...mapActions([
@@ -45,6 +51,7 @@
                 })
             },
             watchGoaling(live, preLive) {
+                live[1].rd.hg = 3
                 const liveObj = {}
                 const preLiveObj = {}
                 // 将数组转换成以比赛id为key的对象
@@ -90,7 +97,6 @@
                             for (let i = match.events_graph.events.length - 1; i >= 0; i--) {
                                 const thisEvent = match.events_graph.events[i]
                                 if (this.goalFlag.indexOf(thisEvent.t) >= 0) {
-                                    console.log(this)
                                     goalingItem.occurTime = parseInt(thisEvent.status) || 0
                                     this.addToGoalingQueue(goalingItem)
                                     break
@@ -100,6 +106,11 @@
                     }
                 }
             }
+            // notifyGoaling() {
+            //     console.log(goaling)
+            //     this.goalingList = goaling.slice(0)
+            //     this.goalingItem = this.goalingList.shift()
+            // }
         },
         computed: {
             ...mapGetters([
@@ -107,20 +118,15 @@
             ])
         },
         watch: {
-            '$store.state.Live.live': 'watchGoaling',
-            '$store.state.Live.goalingQueue': {
-                handler: (goaling, preGoaling) => {
-                    console.log(goaling)
-                },
-                deep: true
-            }
+            '$store.state.Live.live': 'watchGoaling'
+            // '$store.state.Live.goalingQueue': {
+            //     handler: 'notifyGoaling',
+            //     deep: true
+            // }
         },
         mounted() {
             this.fetchLive()
             this.listenVisibility()
-            setInterval(() => {
-                this.currentView = this.currentView ? null : 'GoalingNoticeBoard'
-            }, 3000)
         },
         updated() {
             // console.log(this.$store.state.match.live)
