@@ -104,6 +104,12 @@
             bottom:.35rem
         .match-goal
             background-image:url('/static/images/event-g.png')
+        .match-goal-cancel
+            background-image:url('/static/images/event-gc.png')
+        .match-miss-penalty
+            background-image:url('/static/images/event-mp.png')
+        .match-penalty
+            background-image:url('/static/images/event-p.png')
         
 </style>
 <script>
@@ -126,10 +132,13 @@
                     'match-guest-miss-penalty': type === 'gmp',
                     'match-guest-penalty': type === 'gp',
                     'match-guest-wulong': type === 'gw',
-                    'match-event-rc': type === 'hrc' || type === 'grc',
+                    'match-event-rc': type === 'hrc' || type === 'grc' || type === 'rc',
                     'match-host-corner': type === 'hc',
                     'match-guest-corner': type === 'gc',
-                    'match-goal': type === 'g'
+                    'match-goal': type === 'g',
+                    'match-goal-cancel': type === 'ggc',
+                    'match-miss-penalty': type === 'mp',
+                    'match-penalty': type === 'p'
                 }
             }
         },
