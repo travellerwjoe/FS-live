@@ -1,1 +1,2 @@
 export const FETCH_LIVE = 'FETCH_LIVE'
+export const ADD_TO_GOALING_QUEUE = 'ADD_TO_GOALING_QUEUE'
