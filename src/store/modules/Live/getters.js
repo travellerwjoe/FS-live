@@ -34,6 +34,9 @@ export default {
                 return item.events_graph.status
             }))
 
+            const curLeagueChar = cur.league.ls.charCodeAt()
+            const nextLeagueChar = next.league.ls.charCodeAt()
+
             // 未开始的比赛按开始时间升序排序
             if (curMaxStatus === 0 && nextMaxStatus === 0) {
                 const curMaxStartTime = Math.max.apply(null, cur.matches.map(item => {
@@ -42,12 +45,11 @@ export default {
                 const nextMaxStartTime = Math.max.apply(null, next.matches.map(item => {
                     return new Date(item.rtime).getTime()
                 }))
-                return curMaxStartTime - nextMaxStartTime
+                // 开始时间相同则按联赛首字母降序排序
+                return (curMaxStartTime - nextMaxStartTime) || (nextLeagueChar - curLeagueChar)
             }
 
-            // 如果时间相同则按联赛首字母降序排序
-            const curLeagueChar = cur.league.ls.charCodeAt()
-            const nextLeagueChar = next.league.ls.charCodeAt()
+            // 时间相同则按联赛首字母降序排序
             return (nextMaxStatus - curMaxStatus) || (nextLeagueChar - curLeagueChar)
         })
 
