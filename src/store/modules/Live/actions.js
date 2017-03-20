@@ -1,4 +1,4 @@
-import { FETCH_LIVE, ADD_TO_GOALING_QUEUE } from '@/store/mutation-types'
+import { FETCH_LIVE } from '@/store/mutation-types'
 import api from '@/api/match'
 import socket from '@/socket'
 
@@ -8,9 +8,6 @@ export default {
             res.status === 200 && res.result === 'success' && commit(FETCH_LIVE, res.rs)
         })
         socket.emit('fetchLive')
-    },
-    addToGoalingQueue({ commit }, item) {
-        commit(ADD_TO_GOALING_QUEUE, item)
     },
     socketConnect({ commit }) {
         console.log('socketConnect')
