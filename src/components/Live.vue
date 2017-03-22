@@ -5,7 +5,6 @@
         
         <!-- <component :is="currentView"></component>-->
             
-        <Test :count="5"></Test>
     </div>
 </template>
 <style lang="stylus">
@@ -41,7 +40,8 @@
                 'fetchLive',
                 'socketDisconnect',
                 'socketConnect',
-                'addToGoalingQueue'
+                'pushToGoalingQueue',
+                'notifyGoaling'
             ]),
             listenVisibility() {
                 utils.visibility(() => {
@@ -51,9 +51,11 @@
                 })
             },
             watchGoaling(live, preLive) {
-                live[1].rd.hg = 3
+                live[3].rd.hg = 3
+                // live[4].rd.hg = 2
                 const liveObj = {}
                 const preLiveObj = {}
+                let hasAnyGoaling = false
                 // 将数组转换成以比赛id为key的对象
                 live.forEach((item, index) => {
                     liveObj[item.id] = item
@@ -80,7 +82,7 @@
                             match.goaling.guest = true
                             hasGoaling = true
                         }
-
+                        console.log(hasGoaling)
                         if (hasGoaling) {
                             const goalingItem = {
                                 league: match.league,
@@ -98,13 +100,17 @@
                                 const thisEvent = match.events_graph.events[i]
                                 if (this.goalFlag.indexOf(thisEvent.t) >= 0) {
                                     goalingItem.occurTime = parseInt(thisEvent.status) || 0
-                                    this.addToGoalingQueue(goalingItem)
+                                    this.pushToGoalingQueue(goalingItem)
+                                    console.log('xxxx')
                                     break
                                 }
                             }
+                            // hasAnyGoaling = true
                         }
                     }
                 }
+                console.log(this.$store.state)
+                hasAnyGoaling && this.notifyGoaling()
             }
             // notifyGoaling() {
             //     console.log(goaling)

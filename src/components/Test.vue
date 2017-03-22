@@ -55,7 +55,7 @@
         }, */
         props: ['count'],
         mounted() {
-            console.log(this.count)
+            // console.log(this.count)
         }
     }
 </script>

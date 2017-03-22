@@ -1,20 +1,27 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import * as actions from './actions'
-import * as getters from './getters'
+import actions from './actions'
+import getters from './getters'
 import Live from './modules/Live'
-import { ADD_TO_GOALING_QUEUE } from './mutation-types'
+import { PUSH_TO_GOALING_QUEUE, SHIFT_FROM_GOALING_QUEUE, ASSIGN_GOALINGITEM } from './mutation-types'
 
 Vue.use(Vuex)
 
 const state = {
-    goalingQueue: []
+    goalingQueue: [],
+    goalingItem: null
 }
 
 const mutations = {
     // 添加到进球信息到进球队列
-    [ADD_TO_GOALING_QUEUE](state, item) {
+    [PUSH_TO_GOALING_QUEUE](state, item) {
         state.goalingQueue.push(item)
+    },
+    [SHIFT_FROM_GOALING_QUEUE](state, item) {
+        state.goalingQueue.shift()
+    },
+    [ASSIGN_GOALINGITEM](state, value) {
+        state.goalingItem = value
     }
 }
 
@@ -22,6 +29,7 @@ const store = new Vuex.Store({
     state,
     actions,
     getters,
+    mutations,
     modules: {
         Live
     }

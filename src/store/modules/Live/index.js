@@ -1,6 +1,6 @@
 import actions from './actions'
 import getters from './getters'
-import { FETCH_LIVE, ADD_TO_GOALING_QUEUE } from '@/store/mutation-types'
+import { FETCH_LIVE } from '@/store/mutation-types'
 
 const state = {
     live: []
