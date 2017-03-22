@@ -5,7 +5,6 @@
         
         <!-- <component :is="currentView"></component>-->
             
-        <Test :count="5"></Test>
     </div>
 </template>
 <style lang="stylus">
@@ -41,7 +40,7 @@
                 'fetchLive',
                 'socketDisconnect',
                 'socketConnect',
-                'addToGoalingQueue'
+                'pushToGoalingQueue'
             ]),
             listenVisibility() {
                 utils.visibility(() => {
@@ -51,7 +50,7 @@
                 })
             },
             watchGoaling(live, preLive) {
-                live[1].rd.hg = 3
+                live[4].rd.hg = 1
                 const liveObj = {}
                 const preLiveObj = {}
                 // 将数组转换成以比赛id为key的对象
@@ -86,10 +85,12 @@
                                 league: match.league,
                                 host: {
                                     name: match.host.n,
+                                    score: match.rd.hg,
                                     goaling: match.goaling.host || false
                                 },
                                 guest: {
                                     name: match.guest.n,
+                                    score: match.rd.gg,
                                     goaling: match.goaling.guest || false
                                 },
                                 occurTime: null
@@ -98,7 +99,8 @@
                                 const thisEvent = match.events_graph.events[i]
                                 if (this.goalFlag.indexOf(thisEvent.t) >= 0) {
                                     goalingItem.occurTime = parseInt(thisEvent.status) || 0
-                                    this.addToGoalingQueue(goalingItem)
+                                    console.log('call:' + new Date())
+                                    this.pushToGoalingQueue(goalingItem)
                                     break
                                 }
                             }
