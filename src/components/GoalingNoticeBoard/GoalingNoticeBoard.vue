@@ -71,8 +71,8 @@
                 const hasGoaling = !!this.goalingQueue.length
                 this.goalingItem = this.goalingQueue.shift()
                 setTimeout(() => {
-                    // this.goalingItem = null
-                    // hasGoaling && this.$store.dispatch('shiftFromGoalingQueue')
+                    this.goalingItem = null
+                    hasGoaling && this.$store.dispatch('shiftFromGoalingQueue')
                     setTimeout(() => {
                         this.watchAndNotifyGoaling()
                     }, 1000)

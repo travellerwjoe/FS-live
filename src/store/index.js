@@ -8,23 +8,7 @@ import { PUSH_TO_GOALING_QUEUE, SHIFT_FROM_GOALING_QUEUE } from './mutation-type
 Vue.use(Vuex)
 
 const state = {
-    goalingQueue: [
-        {
-            league: {
-                fn: '欧洲友谊赛'
-            },
-            host: {
-                name: '洛格伦',
-                score: 3
-            },
-            guest: {
-                name: '特温特',
-                score: 1,
-                goaling: true
-            },
-            occurTime: 86
-        }
-    ]
+    goalingQueue: []
 }
 
 const mutations = {
