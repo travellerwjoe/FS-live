@@ -1,6 +1,6 @@
 <template>
-    <transition name="fade" mode="out-in" appear>
-        <div class="goaling-notice-board" v-if="goalingItem">
+    <transition name="fade" mode="out-in" appear v-if="goalingItem">
+        <div class="goaling-notice-board">
             <div class="goaling-league">
                 {{goalingItem.league.fn}}
                 <span class="goaling-time color-red">{{goalingItem.occurTime}}'</span>
@@ -10,14 +10,14 @@
                     <span class="goaling-team-name">{{goalingItem.host.name}}</span>
                     <span v-if="goalingItem.host.goaling">(进球)</span>
                 </div>
-                <div class="goaling-score">{{goalingItem.host.score}}</div>
+                <b class="goaling-score">{{goalingItem.host.score}}</b>
             </div>
             <div :class="['goaling-guest',{'color-red':goalingItem.guest.goaling}]">
                 <div class="goaling-team">
                     <span class="goaling-team-name">{{goalingItem.guest.name}}</span>
                     <span v-if="goalingItem.guest.goaling">(进球)</span>
                 </div>
-                <div class="goaling-score">{{goalingItem.guest.score}}</div>
+                <b class="goaling-score">{{goalingItem.guest.score}}</b>
             </div>
         </div>
 
@@ -27,7 +27,7 @@
     .goaling-notice-board
         width:15rem
         height:5rem
-        background:orange
+        background:#f6cb1c
         position:fixed
         bottom:10%
         margin:auto
@@ -35,6 +35,7 @@
         right:0
         z-index:100
         border-radius:10px
+        border:3px solid #d69811
         
         .goaling-league
             padding:.2rem
