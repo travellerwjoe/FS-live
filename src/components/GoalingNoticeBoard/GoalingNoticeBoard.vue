@@ -1,6 +1,6 @@
 <template>
     <transition name="fade" mode="out-in" appear>
-        <div class="goaling-notice-board">
+        <div class="goaling-notice-board" v-if="goalingItem">
             <div class="goaling-league">
                 {{goalingItem.league.fn}}
                 <span class="goaling-time color-red">{{goalingItem.occurTime}}'</span>

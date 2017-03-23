@@ -2,9 +2,7 @@
     <div class="live">
         <Match-List :list="live"></Match-List>
         <Goaling-Notice-Board></Goaling-Notice-Board>
-        
         <!-- <component :is="currentView"></component>-->
-            
     </div>
 </template>
 <style lang="stylus">
@@ -50,7 +48,6 @@
                 })
             },
             watchGoaling(live, preLive) {
-                live[4].rd.hg = 1
                 const liveObj = {}
                 const preLiveObj = {}
                 // 将数组转换成以比赛id为key的对象
@@ -99,7 +96,6 @@
                                 const thisEvent = match.events_graph.events[i]
                                 if (this.goalFlag.indexOf(thisEvent.t) >= 0) {
                                     goalingItem.occurTime = parseInt(thisEvent.status) || 0
-                                    console.log('call:' + new Date())
                                     this.pushToGoalingQueue(goalingItem)
                                     break
                                 }

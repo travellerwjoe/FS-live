@@ -4,7 +4,6 @@ import actions from './actions'
 import getters from './getters'
 import Live from './modules/Live'
 import { PUSH_TO_GOALING_QUEUE, SHIFT_FROM_GOALING_QUEUE } from './mutation-types'
-
 Vue.use(Vuex)
 
 const state = {
