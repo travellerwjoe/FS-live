@@ -27,6 +27,26 @@ function visibility(visibleCallback, hiddenCallback) {
     }, false)
 }
 
+function notify(title, options) {
+    if (window.Notification) {
+        return new Promise((resolve, reject) => {
+            if (Notification.permission !== 'denied') {
+                Notification.requestPermission().then((permission) => {
+                    if (permission === 'granted') {
+                        const notifycation = new Notification(title, options)
+                        resolve(notifycation)
+                    } else {
+                        reject(permission)
+                    }
+                })
+            } else {
+                reject(Notification.permission)
+            }
+        })
+    }
+}
+
 export default {
-    visibility
+    visibility,
+    notify
 }

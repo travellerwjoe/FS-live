@@ -90,12 +90,14 @@
                                     score: match.rd.gg,
                                     goaling: match.goaling.guest || false
                                 },
-                                occurTime: null
+                                occurTime: null,
+                                event: null
                             }
                             for (let i = match.events_graph.events.length - 1; i >= 0; i--) {
                                 const thisEvent = match.events_graph.events[i]
                                 if (this.goalFlag.indexOf(thisEvent.t) >= 0) {
                                     goalingItem.occurTime = parseInt(thisEvent.status) || 0
+                                    goalingItem.event = thisEvent.t
                                     this.pushToGoalingQueue(goalingItem)
                                     break
                                 }

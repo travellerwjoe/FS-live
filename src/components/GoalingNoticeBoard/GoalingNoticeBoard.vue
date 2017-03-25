@@ -57,10 +57,9 @@
                 text-overflow: ellipsis
                 overflow: hidden
                 vertical-align:top
-            
-
 </style>
 <script>
+    import utils from '@/utils'
     export default {
         data() {
             return {
@@ -71,6 +70,18 @@
             watchAndNotifyGoaling() {
                 const hasGoaling = !!this.goalingQueue.length
                 this.goalingItem = this.goalingQueue.shift()
+                if (this.goalingItem) {
+                    utils.notify(`${this.goalingItem.league.fn} - ${this.goalingItem.occurTime}'`, {
+                        icon: `/static/images/event-${this.goalingItem.event}-hd.png`,
+                        body: (() => {
+                            const goalingItem = this.goalingItem
+                            let hostStr = `（${goalingItem.host.score}）` + goalingItem.host.name + (goalingItem.host.goaling ? ` --- ${this.getGoalingEventStr(goalingItem.event)}` : '')
+                            let guestStr = `（${goalingItem.guest.score}）` + goalingItem.guest.name + (goalingItem.guest.goaling ? ` --- ${this.getGoalingEventStr(goalingItem.event)}` : '')
+
+                            return `${hostStr}\n${guestStr}`
+                        })()
+                    })
+                }
                 setTimeout(() => {
                     this.goalingItem = null
                     hasGoaling && this.$store.dispatch('shiftFromGoalingQueue')
@@ -78,10 +89,25 @@
                         this.watchAndNotifyGoaling()
                     }, 1000)
                 }, 3000)
+            },
+            getGoalingEventStr(event) {
+                switch (event) {
+                    case 'g':
+                    case 'hg':
+                    case 'gg': return '进球'
+                    case 'p':
+                    case 'hp':
+                    case 'gp': return '点球'
+                    case 'hw':
+                    case 'gw': return '乌龙球'
+                    case 'hgc':
+                    case 'ggc': return '进球取消'
+                    default: return '进球'
+                }
             }
         },
         computed: {
-            goalingQueue () {
+            goalingQueue() {
                 return [...this.$store.state.goalingQueue]
             }
         },
@@ -89,4 +115,5 @@
             this.watchAndNotifyGoaling()
         }
     }
+
 </script>
