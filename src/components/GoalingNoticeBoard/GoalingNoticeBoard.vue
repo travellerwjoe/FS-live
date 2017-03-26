@@ -8,14 +8,14 @@
             <div :class="['goaling-host',{'color-red':goalingItem.host.goaling}]">
                 <div class="goaling-team">
                     <span class="goaling-team-name">{{goalingItem.host.name}}</span>
-                    <span v-if="goalingItem.host.goaling">(进球)</span>
+                    <span v-if="goalingItem.host.goaling">({{getGoalingEventStr(goalingItem.event)}})</span>
                 </div>
                 <b class="goaling-score">{{goalingItem.host.score}}</b>
             </div>
             <div :class="['goaling-guest',{'color-red':goalingItem.guest.goaling}]">
                 <div class="goaling-team">
                     <span class="goaling-team-name">{{goalingItem.guest.name}}</span>
-                    <span v-if="goalingItem.guest.goaling">(进球)</span>
+                    <span v-if="goalingItem.guest.goaling">({{getGoalingEventStr(goalingItem.event)}})</span>
                 </div>
                 <b class="goaling-score">{{goalingItem.guest.score}}</b>
             </div>
