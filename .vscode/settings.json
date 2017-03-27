@@ -5,5 +5,9 @@
         "javascriptreact",
         "html",
         "vue"
-    ]
+    ],
+    "emmet.syntaxProfiles": {
+        "vue-html": "html",
+        "vue": "html"
+    }
 }
