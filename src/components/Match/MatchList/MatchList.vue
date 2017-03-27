@@ -4,9 +4,10 @@
     </div>
 </template>
 <style lang="stylus">
-    .match-list 
-        background-color:#2F8162 
-        min-height:100%
+@require '../../../stylus/vars'
+.match-list 
+    background-color:$mainColor
+    min-height:100%
 </style>
 <script>
     import MatchLeague from '../MatchLeague'

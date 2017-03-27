@@ -14,9 +14,8 @@
         opacity: 0
 </style>
 <script>
-    import MatchList from './Match'
+    import MatchList from './Match/'
     import GoalingNoticeBoard from './GoalingNoticeBoard'
-    import Test from './Test'
     import { mapActions, mapGetters } from 'vuex'
     import utils from '@/utils'
     export default {
@@ -30,8 +29,7 @@
         },
         components: {
             MatchList,
-            GoalingNoticeBoard,
-            Test
+            GoalingNoticeBoard
         },
         methods: {
             ...mapActions([

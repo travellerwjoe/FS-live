@@ -14,6 +14,7 @@
     </div>
 </template>
 <style lang="stylus">
+@require '../../../stylus/vars'
     .match-time-bar 
         position: relative;
         height: .75rem;
@@ -42,8 +43,9 @@
             width:0%;
             height: 100%;
             background: #288267;
-            background: -moz-linear-gradient(top,#288267,#105541 100%);
-            background: -webkit-gradient(linear,0 0,0 100%,from(#288267),to(#105541));
+            // background: -moz-linear-gradient(top,#288267,#105541 100%);
+            background: -moz-linear-gradient(top,$mainColor,#105541 100%);
+            background: -webkit-gradient(linear,0 0,0 100%,from($mainColor),to(#105541));
             transition:all .5s
             // border-right: 1px solid #2d7d68;
         .match-time-line
@@ -143,7 +145,18 @@
             }
         },
         // props: ['time', 'events'],
-        props: ['event'],
+        props: {
+            event: {
+                type: Object,
+                default: function() { 
+                    return {
+                        status: null,
+                        events: [],
+                        ml: 90
+                    }
+                }
+            }
+        },
         mounted () {
         }
     }
