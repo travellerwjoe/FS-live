@@ -34,7 +34,7 @@
 @require '../../../stylus/vars'
     .match-status-board
         background:$mainBgBlackColor
-        height:9rem
+        height:12rem
         color:#fff
         font-size:.7rem
         padding:.5rem

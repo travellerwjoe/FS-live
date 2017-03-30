@@ -1,13 +1,13 @@
 <template>
     <div class="match-status-bar-area">
         <div class="match-status-bar-desc">
-            <div class="match-status-l">{{statusL}}</div>
+            <div class="match-status-l">{{showPercent ? Math.round(statusLPer) + '%': statusL}}</div>
             <div class="match-status-bar-title">{{title}}</div>
-            <div class="match-status-r">{{statusR}}</div>
+            <div class="match-status-r">{{showPercent ? Math.round(statusRPer) + '%': statusR}}</div>
         </div>
         <div class="match-status-bar">
-            <div class="match-statusL-bar" :style="{width:statusL/(statusL+statusR)*100 + '%'}"></div>
-            <div class="match-statusR-bar" :style="{width:statusR/(statusL+statusR)*100 + '%'}"></div>
+            <div class="match-statusL-bar" :style="{width:statusLPer + '%'}"></div>
+            <div class="match-statusR-bar" :style="{width:statusRPer + '%'}"></div>
         </div>
     </div>
 </template>
@@ -38,6 +38,12 @@
 </style>
 <script>
     export default {
+        data() {
+            return {
+                statusLPer: this.statusL / (this.statusL + this.statusR) * 100,
+                statusRPer: this.statusR / (this.statusL + this.statusR) * 100
+            }
+        },
         props: {
             title: {
                 type: String
@@ -47,6 +53,10 @@
             },
             statusR: {
                 type: Number
+            },
+            showPercent: {
+                type: Boolean,
+                default: false
             }
         }
     }
