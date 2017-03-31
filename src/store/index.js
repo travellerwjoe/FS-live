@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import actions from './actions'
 import getters from './getters'
 import Live from './modules/Live'
+import MatchDetail from './modules/MatchDetail'
 import { PUSH_TO_GOALING_QUEUE, SHIFT_FROM_GOALING_QUEUE } from './mutation-types'
 Vue.use(Vuex)
 
@@ -26,7 +27,8 @@ const store = new Vuex.Store({
     getters,
     mutations,
     modules: {
-        Live
+        Live,
+        MatchDetail
     }
 })
 

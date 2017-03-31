@@ -1,15 +1,15 @@
 <template>
     <div class="match-status-bar-box">
         <div class="match-status-bar-row">
-            <Match-Status-Bar title="危险进攻" :statusL="50" :statusR="62"></Match-Status-Bar>
-            <Match-Status-Bar title="射正球门" :statusL="6" :statusR="3"></Match-Status-Bar>
+            <Match-Status-Bar title="危险进攻" :statusL="data.host_danger" :statusR="data.guest_danger"></Match-Status-Bar>
+            <Match-Status-Bar title="射正球门" :statusL="data.host_shotongoal" :statusR="data.guest_shotongoal"></Match-Status-Bar>
         </div>
         <div class="match-status-bar-row">
-            <Match-Status-Bar title="进攻" :statusL="80" :statusR="85"></Match-Status-Bar>
-            <Match-Status-Bar title="射偏球门" :statusL="12" :statusR="8"></Match-Status-Bar>
+            <Match-Status-Bar title="进攻" :statusL="data.host_attack" :statusR="data.guest_attack"></Match-Status-Bar>
+            <Match-Status-Bar title="射偏球门" :statusL="data.host_shotoffgoal" :statusR="data.guest_shotoffgoal"></Match-Status-Bar>
         </div>
         <div class="match-status-bar-row">
-            <Match-Status-Bar title="球权" :statusL="80" :statusR="85" :show-percent="true"></Match-Status-Bar>
+            <Match-Status-Bar title="球权" :statusL="data.host_qiuquan" :statusR="data.guest_qiuquan" :show-percent="true"></Match-Status-Bar>
         </div>
     </div>
 </template>
@@ -26,6 +26,7 @@
 <script>
     import MatchStatusBar from './MatchStatusBar'
     export default {
+        props: ['data'],
         components: {
             MatchStatusBar
         }

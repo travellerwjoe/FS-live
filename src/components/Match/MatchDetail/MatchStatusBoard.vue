@@ -2,31 +2,30 @@
     <div class="match-status-board">
         <div class="match-status-board-top">
             <div class="match-host">
-                <div class="match-team">罗马</div>
+                <div class="match-team">{{data.host.name}}</div>
                 <div class="match-team-info">
-                    <span class="match-yellow-card">1</span>
-                    <span class="match-red-card">1</span>
-                    <span class="match-corner">1</span>
-                    <span class="match-odds color-grey">初：-0.25/3/10</span>
+                    <span class="match-yellow-card">{{data.race_data.host_yellowcard}}</span>
+                    <span class="match-red-card">{{data.race_data.host_redcard}}</span>
+                    <span class="match-corner">{{data.race_data.host_corner}}</span>
+                    <span class="match-odds color-grey">初:{{data.race_start.rangfen_handicap | formatHandicap}}/{{data.race_start.daxiao_handicap | formatHandicap}}/{{data.race_start.corner_handicap}}</span>
                 </div>
             </div>
             <div class="match-score-area">
-                <div class="match-score color-orange"> 2-0 </div>
-                <div class="match-time color-red">86'</div>
+                <div class="match-score color-orange"> {{data.race_data.host_goal}}-{{data.race_data.guest_goal}} </div>
+                <div class="match-time color-red">{{data.status}}'</div>
             </div>
             <div class="match-guest">
-                <div class="match-team">尤文图斯</div>
+                <div class="match-team">{{data.guest.name}}</div>
                 <div class="match-team-info">
-                    <span class="match-yellow-card">1</span>
-                    <span class="match-red-card">1</span>
-                    <span class="match-corner">2</span>
+                    <span class="match-yellow-card">{{data.race_data.guest_yellowcard}}</span>
+                    <span class="match-red-card">{{data.race_data.guest_redcard}}</span>
+                    <span class="match-corner">{{data.race_data.guest_corner}}</span>
                     <span class="match-odds color-main">即：0/2.5/9</span>
                 </div>
             </div>
         </div>
         <div class="match-status-board-bottom">
-            <Match-Time-Bar></Match-Time-Bar>
-            <Match-Status-Bar-Box></Match-Status-Bar-Box>
+            <slot></slot>
         </div>
     </div>
 </template>
@@ -96,12 +95,14 @@
             margin-top:.5rem
 </style>
 <script>
-    import MatchTimeBar from '../MatchTimeBar'
-    import MatchStatusBarBox from './MatchStatusBarBox'
+    import {formatHandicap} from '@/filters'
     export default{
         components: {
-            MatchTimeBar,
-            MatchStatusBarBox
+
+        },
+        props: ['data'],
+        filters: {
+            formatHandicap
         },
         mounted () {
 

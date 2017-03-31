@@ -1,5 +1,5 @@
 <template>
-    <div class="match">
+    <div class="match" @click="handleClick">
         <div :class="['match-time','match-col',{'color-main':match.status==='未','color-grey':match.status==='全'}]">{{parseInt(match.status)?match.status+"'":match.status}}</div>
         <div class="match-score match-col" v-if="match.status!=='未'">
             <div class="match-host-score">{{match.rd?match.rd.hg:0}}</div>
@@ -131,6 +131,11 @@
         components: {
             MatchTimeBar
         },  
+        methods: {
+            handleClick() {
+                this.$emit('click')
+            }
+        },
         mounted () {
             
         },

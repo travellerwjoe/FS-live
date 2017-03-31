@@ -32,16 +32,17 @@
                 height:100%
             .match-statusL-bar
                 background:$orangeColor
+                transition:width .3s
             .match-statusR-bar
                 background:$mainColor
+                transition:width .3s
 
 </style>
 <script>
     export default {
         data() {
             return {
-                statusLPer: this.statusL / (this.statusL + this.statusR) * 100,
-                statusRPer: this.statusR / (this.statusL + this.statusR) * 100
+                
             }
         },
         props: {
@@ -49,14 +50,26 @@
                 type: String
             },
             statusL: {
-                type: Number
+                type: [Number, String]
             },
             statusR: {
-                type: Number
+                type: [Number, String]
             },
             showPercent: {
                 type: Boolean,
                 default: false
+            }
+        },
+        computed: {
+            statusLPer() {
+                const statusL = parseInt(this.statusL)
+                const statusR = parseInt(this.statusR)
+                return statusL / (statusL + statusR) * 100
+            },
+            statusRPer() {
+                const statusL = parseInt(this.statusL)
+                const statusR = parseInt(this.statusR)
+                return statusR / (statusL + statusR) * 100
             }
         }
     }

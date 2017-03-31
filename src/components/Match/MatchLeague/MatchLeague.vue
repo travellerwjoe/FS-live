@@ -1,7 +1,7 @@
 <template>
     <div class="match-league">
         <match-league-title :league="league.league"></match-league-title>
-        <match-item v-for="(item,index) in league.matches" :key="item.id" :match="item"></match-item>
+        <match-item v-for="(item,index) in league.matches" :key="item.id" :match="item" @click="link('Match',{match_id:item.id})"></match-item>
     </div>
 </template>
 <style lang="stylus">
@@ -13,6 +13,12 @@
         components: {
             MatchItem,
             MatchLeagueTitle
+        },
+        methods: {
+            link(url, query) {
+                console.log(this.$router)
+                this.$router.push({path: url, query: query})
+            }
         },
         mounted () {
 
