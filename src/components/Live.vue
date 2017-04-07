@@ -40,12 +40,13 @@
             ]),
             listenVisibility() {
                 utils.visibility(() => {
-                    this.socketConnect()
+                    this.socketConnect('fetchLive')
                 }, () => {
                     this.socketDisconnect()
                 })
             },
             watchGoaling(live, preLive) {
+                console.log('watch')
                 const liveObj = {}
                 const preLiveObj = {}
                 // 将数组转换成以比赛id为key的对象
@@ -123,11 +124,29 @@
             // }
         },
         mounted() {
+            console.log(this.$store.state.Live.hasFetchLive)
+            if (this.$store.state.Live.hasFetchLive) {
+                // this.fetchLive()
+            } else {
+                this.fetchLive()
+            }
             this.fetchLive()
-            this.listenVisibility()
+            // this.listenVisibility()
         },
         updated() {
             // console.log(this.$store.state.match.live)
+        },
+        beforeCreate () {
+
+        },
+        created () {
+
+        },
+        beforeDestroy () {
+
+        },
+        destroyed () {
+            // this.fetchLive(true)
         }
     }
 

@@ -12,7 +12,7 @@
     </div>
 </template>
 <style lang="stylus">
-@require '../../../stylus/vars'
+@require '../../../../stylus/vars'
     .match-status-bar-area
         width:50%
         padding:0 .3rem

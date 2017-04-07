@@ -8,7 +8,7 @@
             <Match-Status-Bar title="进攻" :statusL="data.host_attack" :statusR="data.guest_attack"></Match-Status-Bar>
             <Match-Status-Bar title="射偏球门" :statusL="data.host_shotoffgoal" :statusR="data.guest_shotoffgoal"></Match-Status-Bar>
         </div>
-        <div class="match-status-bar-row">
+        <div class="match-status-bar-row" v-if="showQiuquan">
             <Match-Status-Bar title="球权" :statusL="data.host_qiuquan" :statusR="data.guest_qiuquan" :show-percent="true"></Match-Status-Bar>
         </div>
     </div>
@@ -29,6 +29,11 @@
         props: ['data'],
         components: {
             MatchStatusBar
+        },
+        computed: {
+            showQiuquan() {
+                return Number(this.data.host_qiuquan) && Number(this.data.guest_qiuquan)
+            }
         }
     }
 </script>

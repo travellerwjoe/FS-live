@@ -3,7 +3,8 @@ import getters from './getters'
 import { FETCH_LIVE } from '@/store/mutation-types'
 
 const state = {
-    live: []
+    live: [],
+    hasFetchLive: false
 }
 
 const mutations = {

@@ -1,6 +1,6 @@
 <template>
     <div class="match" @click="handleClick">
-        <div :class="['match-time','match-col',{'color-main':match.status==='未','color-grey':match.status==='全'}]">{{parseInt(match.status)?match.status+"'":match.status}}</div>
+        <Match-Status-Text class="match-time match-col" :status="match.status"></Match-Status-Text>
         <div class="match-score match-col" v-if="match.status!=='未'">
             <div class="match-host-score">{{match.rd?match.rd.hg:0}}</div>
             <div class="match-soccer-icon icon-small"></div>
@@ -127,9 +127,11 @@
 </style>
 <script>
     import MatchTimeBar from '../MatchTimeBar'
+    import MatchStatusText from '../MatchStatusText'
     export default {
         components: {
-            MatchTimeBar
+            MatchTimeBar,
+            MatchStatusText
         },  
         methods: {
             handleClick() {

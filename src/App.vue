@@ -5,8 +5,31 @@
 </template>
 
 <script>
+  import utils from '@/utils'
+  import { mapActions } from 'vuex'
   export default {
-    name: 'app'
+    name: 'app',
+    methods: {
+        ...mapActions([
+            'socketConnect',
+            'socketDisconnect'
+        ]),
+        listenVisibility() {
+            utils.visibility(() => {
+                const event = this.$route.name === 'Match' ? 'fetchMatchDetail' : 'fetchLive'
+                const args = this.$route.name === 'Match' ? this.$route.query.match_id : null 
+                this.socketConnect({
+                    event: event,
+                    args: args
+                })
+            }, () => {
+                this.socketDisconnect()
+            })
+        }
+    },
+    mounted () {
+       this.listenVisibility()
+    }
   }
 
 </script>
