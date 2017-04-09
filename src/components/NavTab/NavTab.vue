@@ -53,7 +53,7 @@
                 default: 0
             },
             value: {
-                type: [Object, Array],
+                // type: [Object, Array, String],
                 default: () => {
                     return {}
                 }
@@ -65,9 +65,10 @@
         },
         methods: {
             handleTabClick(index, value) {
-                if (index !== this.activeIndex) this.$emit('change', this.activeIndex, this.activeValue)
+                if (index === this.activeIndex) return
                 this.activeIndex = index
                 this.activeValue = value
+                this.$emit('change', this.activeIndex, this.activeValue)
             },
             updateHighlightStyle() { 
                 const el = this.$refs.highlight

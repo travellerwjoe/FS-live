@@ -18,7 +18,7 @@
                 default: 0
             },
             value: {
-                type: [Object, Array],
+                // type: [Object, Array],
                 default: () => {
                     return {}
                 }

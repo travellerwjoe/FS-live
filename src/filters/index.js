@@ -41,3 +41,37 @@ export function formatDateTime(datetime, fmt, getUTC) {
     }
     return fmt
 }
+
+/**
+ * 获取比赛事件简写对应的class
+ * @param {*} type 事件简写
+ */
+export function getEventClasses(type) {
+    return {
+        'match-host-goal': type === 'hg',
+        'match-host-goal-cancel': type === 'hgc',
+        'match-host-miss-penalty': type === 'hmp',
+        'match-host-penalty': type === 'hp',
+        'match-host-wulong': type === 'hw',
+        'match-guest-goal': type === 'gg',
+        'match-guest-goal-cancel': type === 'ggc',
+        'match-guest-miss-penalty': type === 'gmp',
+        'match-guest-penalty': type === 'gp',
+        'match-guest-wulong': type === 'gw',
+        'match-event-rc': type === 'hrc' || type === 'grc' || type === 'rc',
+        'match-event-yc': type === 'hyc' || type === 'gyc' || type === 'yc',
+        'match-host-corner': type === 'hc',
+        'match-guest-corner': type === 'gc',
+        'match-goal': type === 'g',
+        // 'match-goal-cancel': type === 'ggc',
+        'match-miss-penalty': type === 'mp',
+        'match-penalty': type === 'p',
+        'match-ting': type === 'd',
+        'match-fulltime': type === 'e',
+        'match-halftime': type === 'h',
+        'match-bushi': type === 'it',
+        'match-huanren': type === 'hs' || type === 'gs',
+        'match-space': type === 'cd',
+        'match-weather': type === 'tq'
+    }
+}

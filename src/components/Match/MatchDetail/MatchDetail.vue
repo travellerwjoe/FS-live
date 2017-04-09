@@ -14,12 +14,6 @@
             <Tab :index="4">竞猜</Tab>
             <Tab :index="5">评论</Tab>
         </Nav-Tab>
-        <Nav-Tab @change="changeView" :theme="2">
-            <Tab :index="0">事件直播</Tab>
-            <Tab :index="1">双方阵容</Tab>
-            <Tab :index="2">攻防走势</Tab>
-            <Tab :index="3">视频直播</Tab>
-        </Nav-Tab>
         <div class="match-detail-views">
             <keep-alive>
                 <component :is="view">
@@ -31,22 +25,17 @@
 <style lang="stylus">
 </style>
 <script>
-    import AppHeader from '@/components/AppHeader'
     import { MatchStatusBoard, MatchStatusTitle, MatchStatusBarBox } from './MatchStatusBoard'
     import MatchTimeBar from '../MatchTimeBar'
-    import {NavTab, Tab} from '@/components/NavTab'
     import MatchDetailLive from './MatchDetailLive'
     import { mapActions, mapGetters } from 'vuex'
     import utils from '@/utils'
     export default{
         components: {
-            AppHeader,
             MatchStatusBoard,
             MatchStatusTitle,
             MatchTimeBar,
             MatchStatusBarBox,
-            NavTab,
-            Tab,
             MatchDetailLive
         },
         data() {

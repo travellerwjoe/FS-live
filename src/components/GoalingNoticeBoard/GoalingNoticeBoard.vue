@@ -40,6 +40,10 @@
         .goaling-league
             padding:.2rem
             font-size:.95rem
+            .goling-league-name
+                display:inline-block
+                width:80%
+                vertical-align:sub
         .goaling-time
             font-size:.5rem
         .goaling-host,.goaling-guest

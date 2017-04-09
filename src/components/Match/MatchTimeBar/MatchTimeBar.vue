@@ -9,7 +9,8 @@
         </template>
         <span class="match-HT-icon icon-small"></span>
         <template v-for="(item,index) in event.events">
-            <span :class="['match-event','icon-small',getEventClasses(item.t)]" :title="item.content" :style="{left:(item.status/event.ml*100)>=100?'100%':Math.floor((item.status/event.ml*100))+'%'}"></span>
+            <!--<span :class="['match-event','icon-small',getEventClasses(item.t)]" :title="item.content" :style="{left:(item.status/event.ml*100)>=100?'100%':Math.floor((item.status/event.ml*100))+'%'}"></span>-->
+            <Match-Event-Icon class="match-event" :title="item.content" :type="item.t" :style="{left:(item.status/event.ml*100)>=100?'100%':Math.floor((item.status/event.ml*100))+'%'}"></Match-Event-Icon>
         </template>
     </div>
 </template>
@@ -76,73 +77,23 @@
             bottom:-.18rem
             margin-left:-.5rem
             z-index:100
-        .match-host-goal
-            background-image:url('/static/images/event-hg.png')
-        .match-host-goal-cancel
-            background-image:url('/static/images/event-hgc.png')
-        .match-host-miss-penalty
-            background-image:url('/static/images/event-hmp.png')
-        .match-host-penalty
-            background-image:url('/static/images/event-hp.png')
-        .match-host-wulong
-            background-image:url('/static/images/event-hw.png')
-        .match-guest-goal
-            background-image:url('/static/images/event-gg.png')
-        .match-guest-goal-cancel
-            background-image:url('/static/images/event-ggc.png')
-        .match-guest-miss-penalty
-            background-image:url('/static/images/event-gmp.png')
-        .match-guest-penalty
-            background-image:url('/static/images/event-gp.png')
-        .match-guest-wulong
-            background-image:url('/static/images/event-gw.png')
-        .match-event-rc
-            background-image:url('/static/images/event-rc.png')
         .match-host-corner
-            background-image:url('/static/images/event-h-corner.png')
             bottom:.35rem
         .match-guest-corner
-            background-image:url('/static/images/event-g-corner.png')
             bottom:.35rem
-        .match-goal
-            background-image:url('/static/images/event-g.png')
-        .match-goal-cancel
-            background-image:url('/static/images/event-gc.png')
-        .match-miss-penalty
-            background-image:url('/static/images/event-mp.png')
-        .match-penalty
-            background-image:url('/static/images/event-p.png')
-        
 </style>
 <script>
+    import MatchEventIcon from '@/components/Match/MatchEventIcon'
     export default {
         data() {
             return {
                 
             }
         },
+        components: {
+          MatchEventIcon  
+        },
         methods: {
-            getEventClasses(type) {
-                return {
-                    'match-host-goal': type === 'hg',
-                    'match-host-goal-cancel': type === 'hgc',
-                    'match-host-miss-penalty': type === 'hmp',
-                    'match-host-penalty': type === 'hp',
-                    'match-host-wulong': type === 'hw',
-                    'match-guest-goal': type === 'gg',
-                    'match-guest-goal-cancel': type === 'ggc',
-                    'match-guest-miss-penalty': type === 'gmp',
-                    'match-guest-penalty': type === 'gp',
-                    'match-guest-wulong': type === 'gw',
-                    'match-event-rc': type === 'hrc' || type === 'grc' || type === 'rc',
-                    'match-host-corner': type === 'hc',
-                    'match-guest-corner': type === 'gc',
-                    'match-goal': type === 'g',
-                    // 'match-goal-cancel': type === 'ggc',
-                    'match-miss-penalty': type === 'mp',
-                    'match-penalty': type === 'p'
-                }
-            }
         },
         // props: ['time', 'events'],
         props: {

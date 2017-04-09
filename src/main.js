@@ -7,6 +7,7 @@ import axios from 'axios'
 import config from './config'
 import store from './store'
 import socket from '@/socket'
+import '@/register'
 
 Vue.config.productionTip = false
 
