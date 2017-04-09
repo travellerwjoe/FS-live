@@ -62,7 +62,7 @@
             lineups() {
                 let host = []
                 let guest = []
-                if (this.matchDetail.lineups) {
+                if (this.matchDetail.lineups.length) {
                    host = this.matchDetail.lineups.host.slice(0, 11)
                    guest = this.matchDetail.lineups.guest.slice(0, 11)
                 }
@@ -74,7 +74,7 @@
             bench() {
                 let host = []
                 let guest = []
-                if (this.matchDetail.lineups) {
+                if (this.matchDetail.lineups.length) {
                    host = this.matchDetail.lineups.host.slice(11)
                    guest = this.matchDetail.lineups.guest.slice(11)
                 }
