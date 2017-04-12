@@ -75,3 +75,12 @@ export function getEventClasses(type) {
         'match-weather': type === 'tq'
     }
 }
+
+/**
+ * 格式化比赛进行时间
+ * @param {Number} second 秒数
+ * @param {Boolean} quote 是否待用'标识|默认true
+ */
+export function formatMatchTime(second, quote = true) {
+    return second / 60 === 45 ? '半' : Math.floor(second / 60) + (quote ? "'" : '')
+}

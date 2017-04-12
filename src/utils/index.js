@@ -27,6 +27,11 @@ function visibility(visibleCallback, hiddenCallback) {
     }, false)
 }
 
+/**
+ * 桌面通知
+ * @param {*} title 标题
+ * @param {*} options 选项
+ */
 function notify(title, options) {
     if (window.Notification) {
         return new Promise((resolve, reject) => {

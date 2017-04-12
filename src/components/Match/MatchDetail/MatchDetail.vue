@@ -7,10 +7,10 @@
             <Match-Status-Bar-Box :data="matchDetail.race_plus" slot="bottom"></Match-Status-Bar-Box>
         </Match-Status-Board>
         <Nav-Tab @change="changeView">
-            <Tab :index="0">直播</Tab>
+            <Tab :index="0" :value="'MatchDetailLive'">直播</Tab>
             <Tab :index="1">分析</Tab>
-            <Tab :index="2">指数</Tab>
-            <Tab :index="3">四合一</Tab>
+            <Tab :index="2" :value="'MatchDetailIndex'">指数</Tab>
+            <Tab :index="3" :value="'MatchDetailSP'">四合一</Tab>
             <Tab :index="4">竞猜</Tab>
             <Tab :index="5">评论</Tab>
         </Nav-Tab>
@@ -28,6 +28,8 @@
     import { MatchStatusBoard, MatchStatusTitle, MatchStatusBarBox } from './MatchStatusBoard'
     import MatchTimeBar from '../MatchTimeBar'
     import MatchDetailLive from './MatchDetailLive'
+    import MatchDetailIndex from './MatchDetailIndex'
+    import MatchDetailSP from './MatchDetailSP'
     import { mapActions, mapGetters } from 'vuex'
     import utils from '@/utils'
     export default{
@@ -36,7 +38,9 @@
             MatchStatusTitle,
             MatchTimeBar,
             MatchStatusBarBox,
-            MatchDetailLive
+            MatchDetailLive,
+            MatchDetailIndex,
+            MatchDetailSP
         },
         data() {
             return {
@@ -47,6 +51,11 @@
         mounted () {
             this.fetchMatchDetail(this.matchID)
             // this.listenVisibility()
+            console.log('appendpopstate')
+            // window.onpopstate = this.onpopstate
+        },
+        destroyed () {
+            window.removeEventListener('popstate', this.onpopstate)  
         },
         computed: {
             ...mapGetters([
@@ -72,7 +81,7 @@
                 'socketDisconnect'
             ]),
             changeView(activeIndex, activeValue) {
-                console.log(activeIndex, activeValue)
+                this.view = activeValue
             },
             listenVisibility() {
                 utils.visibility(() => {
@@ -84,6 +93,10 @@
                 }, () => {
                     this.socketDisconnect()
                 })
+            },
+            onpopstate(event) {
+                console.log(event)
+                console.log('xxxxxonpopstatefff')
             }
         }
     }

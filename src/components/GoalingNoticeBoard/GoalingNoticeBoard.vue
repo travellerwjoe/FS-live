@@ -1,6 +1,6 @@
 <template>
     <transition name="fade" mode="out-in" appear v-if="goalingItem">
-        <div class="goaling-notice-board">
+        <div class="goaling-notice-board" @click="link('Match',{match_id:goalingItem.matchID})">
             <div class="goaling-league">
                 {{goalingItem.league.fn}}
                 <span class="goaling-time color-red">{{goalingItem.occurTime}}'</span>
@@ -84,6 +84,13 @@
 
                             return `${hostStr}\n${guestStr}`
                         })()
+                    }).then(notifycation => {
+                        const matchID = this.goalingItem.matchID
+                        notifycation.onclick = () => {
+                            console.log(this)
+                            this.link('Match', {match_id: matchID})
+                            notifycation.close()
+                        }
                     })
                 }
                 setTimeout(() => {
@@ -108,6 +115,9 @@
                     case 'ggc': return '进球取消'
                     default: return '进球'
                 }
+            },
+            link(url, query) {
+                this.$router.push({path: url, query: query})
             }
         },
         computed: {

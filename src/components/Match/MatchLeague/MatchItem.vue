@@ -7,9 +7,9 @@
             <div class="match-guest-score">{{match.rd?match.rd.gg:0}}</div>
         </div>
         <div class="match-corner match-col" v-if="match.status!=='未'">
-            <div class="match-host-corner">{{match.rd?match.rd.hc:0}}</div>
+            <div class="match-corner-host">{{match.rd?match.rd.hc:0}}</div>
             <div class="match-corner-icon icon-small"></div>
-            <div class="match-guest-corner">{{match.rd?match.rd.gc:0}}</div>
+            <div class="match-corner-guest">{{match.rd?match.rd.gc:0}}</div>
         </div>
         <div class="match-main match-col">
             <div class="match-host">
@@ -111,15 +111,9 @@
             margin:auto
         
         .match-soccer-icon
-            background-image:url('/static/images/icon-soccer.png')
             margin:.4rem 0
         .match-corner-icon
-            background-image:url('/static/images/icon-corner.png')
             margin:.4rem 0
-        .match-fav-icon
-            background-image:url('/static/images/icon-fav.png')
-        .match-fav-hollow-icon 
-            background-image:url('/static/images/icon-fav-hollow.png')
 
         .match-goaling
             background-color:yellow

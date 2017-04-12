@@ -7,7 +7,7 @@
             <Tab :index="3">视频直播</Tab>
         </Nav-Tab>
         <keep-alive>
-            <component :is="view"></component>
+            <component :is="view" class="match-detail-view"></component>
         </keep-alive>
         <!--<MatchEventLive></MatchEventLive>-->
     </div>

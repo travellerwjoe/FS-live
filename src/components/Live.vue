@@ -89,6 +89,7 @@
                                     score: match.rd.gg,
                                     goaling: match.goaling.guest || false
                                 },
+                                matchID: match.id,
                                 occurTime: null,
                                 event: null
                             }

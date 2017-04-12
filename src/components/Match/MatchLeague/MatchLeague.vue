@@ -16,7 +16,6 @@
         },
         methods: {
             link(url, query) {
-                console.log(this.$router)
                 this.$router.push({path: url, query: query})
             }
         },
