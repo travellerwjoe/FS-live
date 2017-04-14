@@ -12,8 +12,8 @@
                 </tr>
                 <tr v-for="(item,index) in sp">
                     <td class="color-red">{{item.passed_sec|formatMatchTime}}</td>
-                    <td :class="getActiveClass(item.host_goal,sp[index+1>=sp.length?sp.length-1:index+1].host_goal)||getActiveClass(item.guest_goal,sp[index+1>=sp.length?sp.length-1:index+1].guest_goal)">{{item.host_goal}}:{{item.guest_goal}}</td>
-                    <td>{{item.host_sp||'-'}}</td>
+                    <td :class="$parent.getActiveClass(item.host_goal,sp[index+1>=sp.length?sp.length-1:index+1].host_goal)||$parent.getActiveClass(item.guest_goal,sp[index+1>=sp.length?sp.length-1:index+1].guest_goal)">{{item.host_goal}}:{{item.guest_goal}}</td>
+                    <td :class="$parent.getTrendClass(item,sp[index+1>=sp.length?sp.length-1:index+1])">{{item.host_sp||'-'}}</td>
                     <td>{{item.tie_sp||'-'}}</td>
                     <td>{{item.guest_sp||'-'}}</td>
                     <td>{{item.add_time*1000|formatDateTime('hh:mm',true)}}</td>
@@ -36,14 +36,6 @@
             sp() {
                 return this.matchDetail.sp ? this.matchDetail.sp.bet : []
             }
-        },
-        methods: {
-            getActiveClass(item, nextItem) {
-                if (item !== nextItem && item && nextItem) {
-                    return ['bg-red', 'color-white']
-                }
-                return ''
-            }  
         },
         filters: {
             formatMatchTime,

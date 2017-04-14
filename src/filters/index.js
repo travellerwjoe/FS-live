@@ -82,5 +82,5 @@ export function getEventClasses(type) {
  * @param {Boolean} quote 是否待用'标识|默认true
  */
 export function formatMatchTime(second, quote = true) {
-    return second / 60 === 45 ? '半' : Math.floor(second / 60) + (quote ? "'" : '')
+    return second / 60 === 45 ? '半' : second / 60 === 0 ? '-' : Math.floor(second / 60) + (quote ? "'" : '')
 }

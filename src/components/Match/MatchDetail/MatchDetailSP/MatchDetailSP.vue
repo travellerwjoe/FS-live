@@ -13,6 +13,14 @@
     </div>
 </template>
 <style lang="stylus">
+    .trend-up
+        background-color:#d8eee1
+        &::after
+            content:'↑'
+    .trend-down
+        background-color:#fdd6d7
+        &::after
+            content:'↓'
 </style>
 <script>
     import MatchSPBet from './MatchSPBet'
@@ -57,6 +65,23 @@
                 this.view = activeValue
                 // console.log(activeValue)
                 // this.SPdata = activeValue
+            },
+            getActiveClass(value, nextValue) {
+                if (value !== nextValue && value && nextValue) {
+                    return ['bg-red', 'color-white']
+                }
+                return ''
+            },
+            getTrendClass(item, nextItem) {
+                if (+item.trend === 100) {
+                    return ''
+                } else if (item.trend <= 0 && nextItem.trend >= 0 && item.trend < nextItem.trend) {
+                    return ['trend-down']
+                } else if (item.trend >= 0 && nextItem.trend <= 0 && item.trend > nextItem.trend) {
+                    return ['trend-up']
+                } else {
+                    return ''
+                }
             }
         }
     }
