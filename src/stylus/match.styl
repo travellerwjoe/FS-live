@@ -63,3 +63,35 @@
 .match-detail-view
     height:14rem
     overflow: auto
+
+
+.match-lottery-type
+    &:after
+        content:''
+        font-size:.9rem
+        display:inline-block
+        border-radius:100%
+        width:3rem
+        height:3rem
+        text-align:center
+        line-height:3rem
+    &.match-lottery-rangfen
+        &:after
+            content:'让球'
+            border:1px solid orange
+            color:orange
+    &.match-lottery-winlose
+        &:after
+            content:'胜平负'
+            border:1px solid red
+            color:red
+    &.match-lottery-daxiao
+        &:after
+            content:'大小'
+            border:1px solid skyblue
+            color:skyblue
+    &.match-lottery-corner
+        &:after
+            content:'角球'
+            border:1px solid limegreen  
+            color:limegreen

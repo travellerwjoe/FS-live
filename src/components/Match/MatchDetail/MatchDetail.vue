@@ -11,7 +11,7 @@
             <Tab :index="1">分析</Tab>
             <Tab :index="2" :value="'MatchDetailIndex'">指数</Tab>
             <Tab :index="3" :value="'MatchDetailSP'">四合一</Tab>
-            <Tab :index="4">竞猜</Tab>
+            <Tab :index="4" :value="'MatchDetailLottery'">竞猜</Tab>
             <Tab :index="5">评论</Tab>
         </Nav-Tab>
         <div class="match-detail-views">
@@ -30,6 +30,7 @@
     import MatchDetailLive from './MatchDetailLive'
     import MatchDetailIndex from './MatchDetailIndex'
     import MatchDetailSP from './MatchDetailSP'
+    import MatchDetailLottery from './MatchDetailLottery'
     import { mapActions, mapGetters } from 'vuex'
     import utils from '@/utils'
     export default{
@@ -40,7 +41,8 @@
             MatchStatusBarBox,
             MatchDetailLive,
             MatchDetailIndex,
-            MatchDetailSP
+            MatchDetailSP,
+            MatchDetailLottery
         },
         data() {
             return {
