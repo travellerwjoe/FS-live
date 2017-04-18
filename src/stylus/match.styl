@@ -95,3 +95,33 @@
             content:'角球'
             border:1px solid limegreen  
             color:limegreen
+
+/*.match-lottery-result
+    border-radius:100%
+    width:1.3rem
+    height: 1.3rem
+    display: inline-block
+    font-size:.6rem
+    line-height: 1.3rem
+    &.match-lottery-result-win
+        background-color:red
+        color:white
+        &:after
+            content:'赢'*/
+
+.match-lottery-result
+    background-size: 4rem 4rem
+    background-repeat: no-repeat
+    background-position-x: 14rem
+    &.match-lottery-result-win
+        background-image: url('/static/images/jingcai_jieguo_ying.png')
+    &.match-lottery-result-win-half
+        background-image: url('/static/images/jingcai_jieguo_banying.png')
+    &.match-lottery-result-lose
+        background-image: url('/static/images/jingcai_jieguo_shu.png')        
+    &.match-lottery-result-lose-half
+        background-image: url('/static/images/jingcai_jieguo_banshu.png')        
+    &.match-lottery-result-even
+        background-image: url('/static/images/jingcai_jieguo_zou.png')        
+    &.match-lottery-result-cancel
+        background-image: url('/static/images/jingcai_jieguo_wuxiao.png')        

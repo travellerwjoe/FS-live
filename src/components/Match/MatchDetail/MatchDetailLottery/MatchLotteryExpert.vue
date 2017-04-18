@@ -1,7 +1,7 @@
 <template>
     <div class="match-lottery-expert">
         <ul>
-            <li v-for="item in jingcai">
+            <li v-for="item in jingcai" :class="['match-lottery-result', getLotteryResultClass(item.jieguo)]">
                 <div :class="['match-lottery-type',getLotteryTypeClass(item.type)]">
                 </div>
                 <ul class="match-lottery-detail">
@@ -17,7 +17,10 @@
                         <div class="match-lottery-user-name color-main">{{item.user.username}}</div>
                         <div class="match-lottery-user-addtime color-grey">{{item.add_time*1000 | formatDateTime('hh:mm',true)}}</div>
                     </div>
-                    <div class="match-lottery-user-ranking">{{item.user | getUserRanking}}</div>
+                    <div class="match-lottery-user-ranking">
+                        {{item.user | getUserRanking}}
+                        <span class="match-lottery-result match-lottery-result-win"></span>
+                    </div>
                 </div>
             </li>
         </ul>
@@ -80,6 +83,7 @@
                         position:absolute
                         bottom:0
                         right:0
+                        white-space:nowrap
                     
 </style>
 <script>
@@ -97,6 +101,19 @@
             ]),
             getLotteryTypeClass(type) {
                 return `match-lottery-${type.replace(/half_|_/g, '')}`
+            },
+            getLotteryResultClass(result) {
+                const obj = {
+                    '-10': 'lose',
+                    '10': 'win',
+                    '-5': 'lose-half',
+                    '5': 'lose',
+                    '0': 'even',
+                    '-50': 'cancel'
+                    // '-100': 'running'
+                }   
+                console.log(obj[result])
+                return `match-lottery-result-${obj[result]}`
             }
         },
         computed: {
@@ -182,7 +199,7 @@
                 }
 
                 return obj[lottery.type.replace('half_', '')][lottery.yazhu]
-            }          
+            }         
         },
         mounted () {
             this.fetchLotteryWithExpert({
