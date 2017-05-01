@@ -24,5 +24,17 @@ export default {
             .catch(err => {
 
             })
+    },
+    fetchMatchComments(params) {
+        const url = `${apiUrl}/comments/matchID/${params.matchID}/page/${params.page}`
+        return axios.get(url)
+            .then(res => {
+                if (res.status === 200) {
+                    return res.data
+                }
+            })
+            .catch(err => {
+
+            })
     }
 }

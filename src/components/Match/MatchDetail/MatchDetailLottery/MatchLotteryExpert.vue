@@ -19,7 +19,6 @@
                     </div>
                     <div class="match-lottery-user-ranking">
                         {{item.user | getUserRanking}}
-                        <span class="match-lottery-result match-lottery-result-win"></span>
                     </div>
                 </div>
             </li>
@@ -109,10 +108,10 @@
                     '-5': 'lose-half',
                     '5': 'lose',
                     '0': 'even',
-                    '-50': 'cancel'
-                    // '-100': 'running'
+                    '-50': 'cancel',
+                    '-100': 'running'
                 }   
-                console.log(obj[result])
+
                 return `match-lottery-result-${obj[result]}`
             }
         },

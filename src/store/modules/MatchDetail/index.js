@@ -1,10 +1,11 @@
 import actions from './actions'
 import getters from './getters'
-import { FETCH_MATCH_DETAIL, FETCH_LOTTERY_WITH_EXPERT } from '@/store/mutation-types'
+import { FETCH_MATCH_DETAIL, FETCH_LOTTERY_WITH_EXPERT, FETCH_MATCH_COMMENTS } from '@/store/mutation-types'
 
 const state = {
     matchDetail: {},
-    lotteryWithExpert: {}
+    lotteryWithExpert: {},
+    matchComments: {}
 }
 
 const mutations = {
@@ -13,6 +14,9 @@ const mutations = {
     },
     [FETCH_LOTTERY_WITH_EXPERT](state, res) {
         state.lotteryWithExpert = res
+    },
+    [FETCH_MATCH_COMMENTS](state, comments) {
+        state.matchComments = comments
     }
 }
 
