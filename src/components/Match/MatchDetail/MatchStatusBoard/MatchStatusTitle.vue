@@ -1,10 +1,10 @@
 <template>
     <div class="match-status-title">
         <div class="match-host">
-            <div class="match-team">{{data.host.name}} [{{data.host_pm}}]</div>
+            <div class="match-team">{{data.host.name}} <span class="match-team-rank" v-if="data.host_pm">[{{data.host_pm}}]</span></div>
             <div class="match-team-info">
-                <span class="match-yellow-card">{{data.race_data.host_yellowcard}}</span>
-                <span class="match-red-card">{{data.race_data.host_redcard}}</span>
+                <span class="match-yellow-card" v-if="data.race_data.host_yellowcard > 0">{{data.race_data.host_yellowcard}}</span>
+                <span class="match-red-card" v-if="data.race_data.host_redcard > 0">{{data.race_data.host_redcard}}</span>
                 <span class="match-corner">{{data.race_data.host_corner}}</span>
                 <span class="match-odds color-grey">初:{{data.race_start.rangfen_handicap | formatHandicap}}/{{data.race_start.daxiao_handicap | formatHandicap}}/{{data.race_start.corner_handicap | formatHandicap}}</span>
             </div>
@@ -15,12 +15,12 @@
             <Match-Status-Text :status="data.status" :overtime="data.ss_ta"></Match-Status-Text>
         </div>
         <div class="match-guest">
-            <div class="match-team">[{{data.guest_pm}}] {{data.guest.name}}</div>
+            <div class="match-team"><span class="match-team-rank" v-if="data.guest_pm">[{{data.guest_pm}}]</span> {{data.guest.name}}</div>
             <div class="match-team-info">
-                <span class="match-yellow-card">{{data.race_data.guest_yellowcard}}</span>
-                <span class="match-red-card">{{data.race_data.guest_redcard}}</span>
+                <span class="match-yellow-card" v-if="data.race_data.guest_yellowcard > 0">{{data.race_data.guest_yellowcard}}</span>
+                <span class="match-red-card" v-if="data.race_data.guest_redcard > 0">{{data.race_data.guest_redcard}}</span>
                 <span class="match-corner">{{data.race_data.guest_corner}}</span>
-                <span class="match-odds color-main" v-if="parseInt(data.status)">即：{{data.race_running.rangfen_handicap | formatHandicap}}/{{data.race_running.daxiao_handicap | formatHandicap}}/{{data.race_running.corner_handicap | formatHandicap}}</span>
+                <span class="match-odds color-main" v-if="data.status !=='全'">即：{{data.race_running.rangfen_handicap | formatHandicap}}/{{data.race_running.daxiao_handicap | formatHandicap}}/{{data.race_running.corner_handicap | formatHandicap}}</span>
                 <span class="match-start-time" :class="{'color-main':data.status === '未','color-grey':data.status === '全'}" v-if="data.status === '未' || data.status === '全'">{{data.race_time*1000 | formatDateTime('yyyy-MM-dd hh:mm',true)}}</span>
             </div>
         </div>
