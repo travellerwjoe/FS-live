@@ -14,6 +14,7 @@ export default new Router({
     //   name: 'Hello',
     //   component: Hello
     // },
+
     {
       path: '/Live',
       name: 'Live',
@@ -28,6 +29,10 @@ export default new Router({
       path: '/Test',
       name: 'test',
       component: Test
+    },
+    {
+      path: '*',
+      redirect: '/Live'
     }
   ]
 })
